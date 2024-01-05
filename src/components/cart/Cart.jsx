@@ -9,8 +9,8 @@ import ShimmerCart from "./ShimmerCart";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart);
-  // const temp = useRestrauntMenuInfo(cartItems.id);
-  const temp = useRestrauntMenuInfo(12);
+  const temp = useRestrauntMenuInfo(cartItems.id);
+  // const temp = useRestrauntMenuInfo(12);
 
   return cartItems.total != 0 ? (
     temp ? (
