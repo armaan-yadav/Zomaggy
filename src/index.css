@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.shimmer-effect {
+    background: linear-gradient(0deg, #f1f1f1, #dedede);
+    background-size: 400% 400%;
+
+    -webkit-animation: shimmer-animation 1s ease infinite;
+    -moz-animation: shimmer-animation 1s ease infinite;
+    animation: shimmer-animation 1s ease infinite;
+}
+@keyframes shimmer-animation {
+    0%{background-position:51% 0%}
+    50%{background-position:50% 100%}
+    100%{background-position:51% 0%}
+}
