@@ -1,7 +1,9 @@
 import { createContext } from "react";
 
 const UserContext = createContext({
-  loggedInUser: "Mini",
+  loggedInUser: "",
+  loggedInStatus: "",
   currentRestraunt: {},
+  location,
 });
 export default UserContext;

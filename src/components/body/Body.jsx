@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import RestrauntCard, { withOneDeliveryLabel } from "./RestrauntCard";
 import Shimmer from "./Shimmer";
-import UserContext from "../../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Body = () => {
   const [allRestraunts, setAllRestraunts] = useState([]);
@@ -9,12 +9,15 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [showSearch, setShowSearch] = useState(true);
   const RestrauntCardWithLabel = withOneDeliveryLabel(RestrauntCard);
+  const coords = useSelector((store) => store.location.location);
+  const city = useSelector((store) => store.location.city.city);
   async function getRestraunt() {
     // const data = await fetch(
     //   `https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
     // );
     const data = await fetch(
-      "https://proxy.cors.sh/https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
+      // `https://proxy.cors.sh/https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`,
+      `https://proxy.cors.sh/https://www.swiggy.com/dapi/restaurants/list/v5?lat=${coords.latitude}&lng=${coords.longitude}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`,
       {
         headers: {
           "x-cors-api-key": "temp_950bc8658fbca3c61bf5e4e12caca84b",
@@ -24,7 +27,7 @@ const Body = () => {
     const dataJSON = await data.json();
     setAllRestraunts(
       // dataJSON.data.cards[3]?.card?.card?.gridElements?.infoWithStyle
-      //   ?.restaurants
+      //   // ?.restaurants
       dataJSON.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
     );
     setFilteredRestraunts(
@@ -32,7 +35,6 @@ const Body = () => {
       //   ?.restaurants
       dataJSON.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
     );
-
   }
 
   useEffect(() => {
@@ -103,6 +105,7 @@ const Body = () => {
           Top Rated
         </button>
       </div>
+      <h1>Top Restraunts in {city}</h1>
       <div className="grid grid-cols-4 gap-4 justify-items-center">
         {filteredRestraunts?.map((e) => {
           return e.info.id % 2 == 0 ? (
