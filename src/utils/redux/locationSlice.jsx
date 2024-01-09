@@ -1,22 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
+const getLocation = () => {
+  const localLocation = localStorage.getItem("location");
+
+  if (localLocation) {
+    return JSON.parse(localLocation);
+  } else {
+    return {
+      location: { latitude: "", longitude: "" },
+      address: "",
+    };
+  }
+};
 
 const locationSlice = createSlice({
   name: "location",
-  initialState: {
-    location: { latitude: "", longitude: "" },
-    city: "",
-  },
+  initialState: getLocation(),
   reducers: {
     updateLocation: (state, action) => {
-      // console.log(action.payload);
       state.location.latitude = String(action.payload.latitude);
       state.location.longitude = String(action.payload.longitude);
+      localStorage.setItem("location", JSON.stringify(state));
     },
-    setCity: (state, action) => {
-      state.city = action.payload;
+    setAddress: (state, action) => {
+      state.address = action.payload;
+      localStorage.setItem("location", JSON.stringify(state));
     },
   },
 });
 
 export default locationSlice.reducer;
-export const { updateLocation, setCity } = locationSlice.actions;
+export const { updateLocation, setAddress } = locationSlice.actions;

@@ -21,7 +21,7 @@ const Login = ({ setShowSignUpPage, setShowLoginPage }) => {
       .then((response) => {
         const user = response.user;
         setSubmitDisabled(false);
-        navigate("/");
+        // navigate("/");
         setShowLoginPage(false);
         setShowSignUpPage(false);
       })
@@ -31,7 +31,7 @@ const Login = ({ setShowSignUpPage, setShowLoginPage }) => {
       });
   };
   return (
-    <div className="absolute top-0 right-0 w-[35%] min-h-full  bg-white p-10">
+    <div className="fixed top-0 right-0 w-[35%] min-h-full  bg-white p-10 z-[100] shadow-2xl">
       <button
         className="absolute top-5 left-4 text-2xl"
         onClick={() => {
@@ -47,11 +47,11 @@ const Login = ({ setShowSignUpPage, setShowLoginPage }) => {
           <button
             className="text-sm"
             onClick={() => {
-              setShowLoginPage(true);
-              setShowSignUpPage(false);
+              setShowLoginPage(false);
+              setShowSignUpPage(true);
             }}
           >
-            or<span className="text-[#FC8112]"> click here to login</span>
+            or<span className="text-[#FC8112]"> click here to sign up</span>
           </button>
           <span className="text-[2rem]">
             <i className="fa-solid fa-grip-lines"></i>

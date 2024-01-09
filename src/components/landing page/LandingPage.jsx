@@ -1,17 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import Footer from "../footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { updateLocation, setCity } from "../../utils/redux/locationSlice";
+import { updateLocation, setAddress } from "../../utils/redux/locationSlice";
 import { Link, useNavigate } from "react-router-dom";
 import SignUp from "../forms/SignUp";
 import Login from "../forms/Login";
 import UserContext from "../../utils/UserContext";
+import LoadingImage from "../../assets/loading.gif";
+import ErrorPopUp from "../../utils/error/ErrorPopUp";
 const LandingPage = () => {
   const dispatcher = useDispatch();
-  const city = useSelector((store) => store.location.city.city);
+  const address = useSelector((store) => store.location.address);
   const [showLoginPage, setShowLoginPage] = useState(false);
   const [showSignUpPage, setShowSignUpPage] = useState(false);
   const { loggedInStatus, loggedInUser } = useContext(UserContext);
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const text = [
@@ -36,11 +39,13 @@ const LandingPage = () => {
     navigator.geolocation.getCurrentPosition(
       async (position) => {
         const { latitude, longitude } = position.coords;
-        console.log("User Location:", { latitude, longitude });
         setLatitude(latitude);
         setLongitude(longitude);
       },
       (error) => {
+        setFetching(false);
+        setShowLocateYourself(true);
+        setError(true);
         console.error("Error retrieving user location:", error);
       }
     );
@@ -56,7 +61,7 @@ const LandingPage = () => {
     )
       .then((response) => response.json())
       .then((result) => {
-        dispatcher(setCity(result.features[0].properties));
+        dispatcher(setAddress(result.features[0].properties));
         setFetching(false);
       })
       .catch((error) => console.log("error", error));
@@ -69,6 +74,24 @@ const LandingPage = () => {
   return (
     <>
       <div>
+        {error && (
+          <ErrorPopUp
+            text={"Google Maps does not have permission to use your location."}
+            setError={setError}
+          />
+        )}
+        {showSignUpPage && (
+          <SignUp
+            setShowLoginPage={setShowLoginPage}
+            setShowSignUpPage={setShowSignUpPage}
+          />
+        )}
+        {showLoginPage && (
+          <Login
+            setShowLoginPage={setShowLoginPage}
+            setShowSignUpPage={setShowSignUpPage}
+          />
+        )}
         <div className="hero-section flex flex-row min-h-[35rem] ">
           <div className="w-[60%]  px-10 pt-[5rem]">
             <div className="flex w-full flex-row justify-between items-center">
@@ -113,30 +136,34 @@ const LandingPage = () => {
                 Order food from favourite restaurants near you.
               </h1>
             </div>
-            <div className=" w-full flex  items-center mt-[2rem] ">
+            <div className=" w-full flex  items-center mt-[2rem] h-[60px] ">
               <button
                 onClick={() => {
                   setShowLocateYourself(false);
                   getLocation();
                 }}
-                className="flex-1 py-3 px-5 font-semibold text-lg text-gray-400 border-[1px] rounded-l-md bordr-r-none border-gray-200 border-r-none text-left"
+                className=" h-full flex-1 py-3 px-5 font-semibold text-lg text-gray-400 border-[1px] rounded-l-md bordr-r-none border-gray-200 border-r-none text-left"
               >
                 {showLocateYourself ? (
                   "Click here to locate yourself"
                 ) : fetching ? (
                   <span>Fethcing your location.....</span>
                 ) : (
-                  `Expolore Restraunts in ${city}`
+                  `Expolore Restraunts in ${address.city}`
                 )}
               </button>{" "}
               <button
-                className="text-white bg-[#FC8112] text-lg px-5 py-3 rounded-r-md font-semibold border-2 border-[#FC8112]"
-                // disabled={!(latitude && longitude)}
+                className="h-full w-[20%] text-white bg-[#FC8112] text-lg px-5 py-3 rounded-r-md font-semibold border-2 border-[#FC8112] flex justify-center items-center"
                 onClick={() => {
-                  loggedInStatus ? navigate("/home") : setShowLoginPage(true);
+                  navigate("/home");
                 }}
+                disabled={fetching}
               >
-                Find Food
+                {fetching ? (
+                  <img src={LoadingImage} alt="" className="h-[18px] " />
+                ) : (
+                  `Find Food`
+                )}
               </button>
             </div>
             <div className="mt-[2.5rem]">
@@ -161,18 +188,6 @@ const LandingPage = () => {
               className="h-full w-full object-cover"
             />
           </div>
-          {showSignUpPage && (
-            <SignUp
-              setShowLoginPage={setShowLoginPage}
-              setShowSignUpPage={setShowSignUpPage}
-            />
-          )}
-          {showLoginPage && (
-            <Login
-              setShowLoginPage={setShowLoginPage}
-              setShowSignUpPage={setShowSignUpPage}
-            />
-          )}
         </div>
         <div className="w-full min-h-[20rem] bg-[#2b1e16] flex flex-row justify-around pb-8 ">
           <div className="text-white  w-[25%] flex  flex-col items-center justify-center gap-6">

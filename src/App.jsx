@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import appStore from "./utils/redux/appStore";
 import CartContext from "./utils/CartContext";
 import { auth } from "./utils/firebase";
-
 const App = () => {
   const onlineStatus = useOnlineStatus();
   if (!onlineStatus) {
@@ -25,16 +24,18 @@ const App = () => {
         setUserName(user.displayName);
       } else {
         setLoggedIn(false);
+        setUserName("");
       }
     });
   }, []);
- 
+  console.log(loggedIn, userName);
   return (
     <>
       <Provider store={appStore}>
         <UserContext.Provider
           value={{
             loggedInUser: userName,
+            setUserName,
             currentRestraunt: currentRestraunt,
             setCurrentRestraunt,
             loggedInStatus: loggedIn,

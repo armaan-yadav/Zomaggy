@@ -12,7 +12,7 @@ const EmptyCart = () => {
         </span>
       </div>
       <div className="bg-[#FC8019] text-white text-lg font-[700] px-10 py-2">
-        <Link to={"/"}>
+        <Link to={"/home"}>
           <span>See all restraunts near you</span>
         </Link>
       </div>

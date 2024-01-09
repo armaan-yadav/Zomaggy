@@ -1,7 +1,7 @@
 const Shimmer = () => {
   return (
     <>
-      <div className="w-full  px-[5rem] mt-[120px]">
+      <div className="w-full  px-[5rem] mt-[120px] bg-white">
         <div className="grid grid-cols-4 gap-4 ">
           {Array(8)
             .fill("")

@@ -1,7 +1,7 @@
 const ShimmerMenu = () => {
   return (
     <>
-      <div className="px-[15rem] pt-[5rem] ">
+      <div className="px-[15rem] pt-[5rem] bg-white ">
         <div className="border-b-[2px] border-dashed flex w-full gap-4 pb-8 border-gray-300">
           <div className="rounded-2xl h-[200px] w-[200px] shimmer-effect"></div>
           <div className=" flex-grow flex  flex-row justify-between items-center text-gray-400  ">

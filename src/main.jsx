@@ -4,14 +4,13 @@ import App from "./App.jsx";
 import About from "./components/about/About.jsx";
 import Cart from "./components/cart/Cart.jsx";
 import Body from "./components/body/Body.jsx";
-import Error from "./utils/Error.jsx";
+import Error from "../src/utils/error/ErrorPage.jsx";
 import Header from "./components/header/Header.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RestrauntMenu from "./components/restraunt Menu/RestrauntMenu.jsx";
 import LandingPage from "./components/landing page/LandingPage.jsx";
-import { Provider } from "react-redux";
-import appStore from "./utils/redux/appStore.jsx";
+import Protected from "./utils/Protected.jsx";
 
 const Grocery = lazy(() => import("./components/Grocery/Grocery.jsx"));
 const router = createBrowserRouter([
@@ -27,8 +26,10 @@ const router = createBrowserRouter([
         path: "/home",
         element: (
           <>
-            <Header />
-            <Body />
+            <Protected>
+              <Header />
+              <Body />
+            </Protected>
           </>
         ),
       },
@@ -36,8 +37,10 @@ const router = createBrowserRouter([
         path: "/about",
         element: (
           <>
-            <Header />
-            <About />
+            <Protected>
+              <Header />
+              <About />
+            </Protected>
           </>
         ),
       },
@@ -45,17 +48,22 @@ const router = createBrowserRouter([
         path: "/cart",
         element: (
           <>
-            <Header />
-            <Cart />
+            <Protected>
+              <Header />
+              <Cart />
+            </Protected>
           </>
         ),
       },
+
       {
-        path: "/restraunts/:resId",
+        path: "home/restraunts/:resId",
         element: (
           <>
-            <Header />
-            <RestrauntMenu />
+            <Protected>
+              <Header />
+              <RestrauntMenu />
+            </Protected>
           </>
         ),
       },
@@ -64,8 +72,11 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<>loadingggg..</>}>
             <>
-              <Header />
-              <Grocery />
+              <Protected>
+                {" "}
+                <Header />
+                <Grocery />
+              </Protected>
             </>
           </Suspense>
         ),
