@@ -14,6 +14,7 @@ const Header = () => {
   const { formatted } = useSelector((store) => store.location.address);
   const [showLoginPage, setShowLoginPage] = useState(false);
   const [showSignUpPage, setShowSignUpPage] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
 
   const handleLogOut = () => {
     signOut(auth)
@@ -81,10 +82,32 @@ const Header = () => {
           </li>
           <li>
             {loggedInStatus ? (
-              <span>
-                Welcome
-                <span className="text-lg font-[600]"> {loggedInUser}</span>
-              </span>
+              <div
+                className="relative"
+                onMouseEnter={() => setShowLogout(true)}
+                onMouseLeave={() => setShowLogout(false)}
+              >
+                <div>
+                  Welcome
+                  <span className="text-lg font-[600]"> {loggedInUser}</span>
+                </div>
+                <div
+                  className={`h-full w-full absolute top-[100%] left-0 F duration-300 ${
+                    showLogout ? `visible` : `hidden`
+                  }`}
+                >
+                  {" "}
+                  <button
+                    className="w-full h-full text-white bg-[#FC8112] rounded-lg"
+                    onClick={() => {
+                      handleLogOut();
+                      setShowLogout(false);
+                    }}
+                  >
+                    Log Out
+                  </button>
+                </div>
+              </div>
             ) : (
               <button onClick={() => setShowSignUpPage(true)}>Sign In</button>
             )}
