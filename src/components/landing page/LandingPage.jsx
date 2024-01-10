@@ -101,7 +101,7 @@ const LandingPage = () => {
                 className="h-[60px] max-md:h-[40px]"
               />
               {!loggedInStatus ? (
-                <div className="w-fit  bg-green-900 max-md:flex max-md:flex-col ">
+                <div className="w-fit  max-md:flex max-md:flex-col ">
                   {" "}
                   <button
                     className="font-[700] px-6 py-2 rounded-sm "
