@@ -31,7 +31,7 @@ const Login = ({ setShowSignUpPage, setShowLoginPage }) => {
       });
   };
   return (
-    <div className="fixed top-0 right-0 w-[35%] min-h-full  bg-white p-10 z-[100] shadow-2xl">
+    <div className="fixed top-0 right-0 w-[35%] min-h-full  bg-white p-10 z-[100] shadow-2xl max-md:w-full max-md:py-[10rem]">
       <button
         className="absolute top-5 left-4 text-2xl"
         onClick={() => {

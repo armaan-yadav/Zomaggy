@@ -92,19 +92,19 @@ const LandingPage = () => {
             setShowSignUpPage={setShowSignUpPage}
           />
         )}
-        <div className="hero-section flex flex-row min-h-[35rem] ">
-          <div className="w-[60%]  px-10 pt-[5rem]">
-            <div className="flex w-full flex-row justify-between items-center">
+        <div className="hero-section flex flex-row min-h-[35rem]  max-md:flex-col max-md:w-full ">
+          <div className="w-[60%]  px-10 pt-[5rem]  max-md:w-full max-md:pt-2 max-md:px-2 ">
+            <div className="flex w-full flex-row justify-between items-center   max-md:justify-between ">
               <img
                 src="https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Swiggy_logo.svg/2560px-Swiggy_logo.svg.png"
                 alt=""
-                className="h-[60px]"
+                className="h-[60px] max-md:h-[40px]"
               />
               {!loggedInStatus ? (
-                <div>
+                <div className="w-fit  bg-green-900 max-md:flex max-md:flex-col ">
                   {" "}
                   <button
-                    className="font-[700] px-6 py-2 rounded-sm"
+                    className="font-[700] px-6 py-2 rounded-sm "
                     onClick={() => {
                       setShowLoginPage(true);
                       setShowSignUpPage(false);
@@ -123,20 +123,20 @@ const LandingPage = () => {
                   </button>
                 </div>
               ) : (
-                <h1 className="font-[700] text-white bg-black px-6 py-2 rounded-sm ">
+                <div className="font-[700] text-white bg-black px-6 py-2 rounded-sm ">
                   Welcome {loggedInUser}
-                </h1>
+                </div>
               )}
             </div>
-            <div className="mt-[5rem] flex flex-col gap-3">
-              <h1 className="text-[2.8rem] font-[600] animate-bounce">
+            <div className="mt-[5rem] flex flex-col gap-3 ">
+              <h1 className="text-[2.8rem] font-[600] animate-bounce max-md:h-[7rem]">
                 {text[currentText]}
               </h1>
               <h1 className="text-gray-600 text-xl font-[500]">
                 Order food from favourite restaurants near you.
               </h1>
             </div>
-            <div className=" w-full flex  items-center mt-[2rem] h-[60px] ">
+            <div className=" w-full flex  items-center mt-[2rem] h-[60px] max-md:mb-5 ">
               <button
                 onClick={() => {
                   setShowLocateYourself(false);
@@ -166,9 +166,11 @@ const LandingPage = () => {
                 )}
               </button>
             </div>
-            <div className="mt-[2.5rem]">
-              <h1 className="text-lg font-[600]">Popular Cities in India</h1>
-              <h1 className="flex gap-4 text-md font-[600] text-gray-400 cursor-pointer">
+            <div className="mt-[2.5rem] max-md:hidden">
+              <h1 className="text-lg font-[600] max-md:text-center">
+                Popular Cities in India
+              </h1>
+              <h1 className="flex gap-4 text-md font-[600] text-gray-400 cursor-pointer max-md:grid max-md:grid-cols-3 max-md:gap-1 ">
                 <span>Mumbai</span>
                 <span>Banglore</span>
                 <span>Kota</span>
@@ -181,16 +183,16 @@ const LandingPage = () => {
               </h1>
             </div>
           </div>
-          <div className="w-[40%] ">
+          <div className="w-[40%] max-md:w-full">
             <img
               src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_1340/Lunch1_vlksgq"
               alt=""
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover max-md:object-center"
             />
           </div>
         </div>
-        <div className="w-full min-h-[20rem] bg-[#2b1e16] flex flex-row justify-around pb-8 ">
-          <div className="text-white  w-[25%] flex  flex-col items-center justify-center gap-6">
+        <div className="w-full min-h-[20rem] bg-[#2b1e16] flex flex-row justify-around pb-8 max-md:flex-col max-md:px-2">
+          <div className="text-white  w-[25%] flex  flex-col items-center justify-center gap-6 max-md:w-full">
             <img
               src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_248,h_376/4x_-_Super_fast_delivery_awv7sn"
               alt=""
@@ -205,7 +207,7 @@ const LandingPage = () => {
               </h1>
             </div>
           </div>
-          <div className="text-white w-[25%] flex  flex-col items-center justify-center gap-6">
+          <div className="text-white w-[25%] flex  flex-col items-center justify-center gap-6 max-md:w-full">
             <img
               src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_248,h_376/4x_-_Super_fast_delivery_awv7sn"
               alt=""
@@ -220,7 +222,7 @@ const LandingPage = () => {
               </h1>
             </div>
           </div>
-          <div className="text-white w-[25%] flex  flex-col items-center justify-center gap-6">
+          <div className="text-white w-[25%] flex  flex-col items-center justify-center gap-6 max-md:w-full">
             <img
               src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_248,h_376/4x_-_Super_fast_delivery_awv7sn"
               alt=""
@@ -236,8 +238,8 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-row ">
-          <div className="w-[40%] h-[35rem]  flex  flex-col items-left justify-center px-8 gap-7">
+        <div className="flex flex-row max-md:flex-col  ">
+          <div className="w-[40%] h-[35rem]  flex  flex-col items-left justify-center px-8 gap-7 max-md:w-full max-md:h-fit max-md:py-9">
             <div>
               <h1 className="text-[2rem] font-[600]">Restraunts In Pocket</h1>
               <h1 className="text-gray-400 text-sm">
@@ -258,16 +260,16 @@ const LandingPage = () => {
               />
             </div>
           </div>
-          <div className="w-[60%] h-[35rem] relative overflow-hidden">
+          <div className="w-[60%] h-[35rem] relative overflow-hidden max-md:w-full max-md:h-[25rem]">
             <img
               src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_768,h_978/pixel_wbdy4n"
               alt=""
-              className="w-[384px] h-[489px] absolute left-3 -top-10"
+              className="w-[384px] h-[489px] absolute left-3 -top-10 max-md:left-0 max-md:w-[250px] max-md:h-auto"
             />
             <img
               src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_768,h_978/iPhone_wgconp_j0d1fn"
               alt=""
-              className="w-[384px] h-[489px] absolute bottom-0 right-3"
+              className="w-[384px] h-[489px] absolute bottom-0 right-3 max-md:w-[250px] max-md:h-auto max-md:right-0"
             />
           </div>
         </div>

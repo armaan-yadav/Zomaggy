@@ -6,11 +6,12 @@ import Cart from "./components/cart/Cart.jsx";
 import Body from "./components/body/Body.jsx";
 import Error from "../src/utils/error/ErrorPage.jsx";
 import Header from "./components/header/Header.jsx";
+import Help from "./components/help/Help.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RestrauntMenu from "./components/restraunt Menu/RestrauntMenu.jsx";
 import LandingPage from "./components/landing page/LandingPage.jsx";
-import Protected from "./utils/Protected.jsx";
+import HeaderBottom from "./components/header/HeaderBottom.jsx";
 
 const Grocery = lazy(() => import("./components/Grocery/Grocery.jsx"));
 const router = createBrowserRouter([
@@ -26,10 +27,9 @@ const router = createBrowserRouter([
         path: "/home",
         element: (
           <>
-            <Protected>
-              <Header />
-              <Body />
-            </Protected>
+            <Header />
+            <Body />
+            <HeaderBottom />
           </>
         ),
       },
@@ -37,10 +37,9 @@ const router = createBrowserRouter([
         path: "/about",
         element: (
           <>
-            <Protected>
-              <Header />
-              <About />
-            </Protected>
+            <Header />
+            <About />
+            <HeaderBottom />
           </>
         ),
       },
@@ -48,10 +47,19 @@ const router = createBrowserRouter([
         path: "/cart",
         element: (
           <>
-            <Protected>
-              <Header />
-              <Cart />
-            </Protected>
+            <Header />
+            <Cart />
+            <HeaderBottom />
+          </>
+        ),
+      },
+      {
+        path: "/help",
+        element: (
+          <>
+            <Header />
+            <Help />
+            <HeaderBottom />
           </>
         ),
       },
@@ -60,10 +68,9 @@ const router = createBrowserRouter([
         path: "home/restraunts/:resId",
         element: (
           <>
-            <Protected>
-              <Header />
-              <RestrauntMenu />
-            </Protected>
+            <Header />
+            <RestrauntMenu />
+            <HeaderBottom />
           </>
         ),
       },
@@ -72,11 +79,10 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<>loadingggg..</>}>
             <>
-              <Protected>
-                {" "}
-                <Header />
-                <Grocery />
-              </Protected>
+              {" "}
+              <Header />
+              <Grocery />
+              <HeaderBottom />
             </>
           </Suspense>
         ),

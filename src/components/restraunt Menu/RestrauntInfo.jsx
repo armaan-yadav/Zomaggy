@@ -9,32 +9,37 @@ const RestrauntInfo = ({ restrauntInfoData, setRatingColorFunction }) => {
     cuisines,
     avgRating,
     totalRatingsString,
-    availability,
-    lastMileTravelString,
-    locality,
     sla,
+    locality,
     id,
   } = restrauntInfoData;
   // console.log(sla);
+  const { lastMileTravelString, slaString } = sla;
   const { setCurrentRestraunt } = useContext(UserContext);
   useEffect(() => {
     setCurrentRestraunt({ name, cloudinaryImageId, locality, id });
   }, []);
   return (
-    <div className=" flex w-full gap-4 pb-4">
+    <div className=" flex w-full gap-4 pb-4 max-md:flex-col">
       <div className="rounded-2xl overflow-hidden object-cover object-center">
         <img
           src={`${IMAGE_LINK + cloudinaryImageId}`}
           alt=""
-          className="h-[150px]"
+          className="h-[150px] max-md:w-full object-cover"
         />
       </div>
       <div className=" flex-grow flex  flex-row justify-between items-center text-gray-400  ">
         <div>
-          <h1 className="text-3xl font-[600] text-black">{name}</h1>
-          <h1>{cuisines?.join(", ")}</h1>
-          <h1>{locality}</h1>
-          <h1>{lastMileTravelString}</h1>
+          <h1 className="text-3xl font-[600] text-black max-md:font-[700]">
+            {name}
+          </h1>
+          <div className="max-md:text-lg max-md:font-[600] max-md:flex max-md:flex-col max-md:gap-2 ">
+            <h1>{cuisines?.join(", ")}</h1>
+            <h1>{locality}</h1>
+            <h1>
+              {lastMileTravelString} , {slaString}
+            </h1>
+          </div>
         </div>
         <div className="flex  flex-col w-fit rounded-lg justify-center items-center p-1 border-gray-500 border-[1px] bg-white">
           <div

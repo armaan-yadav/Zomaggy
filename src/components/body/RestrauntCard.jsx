@@ -9,17 +9,17 @@ const RestrauntCard = ({ resData }) => {
   const { slaString, lastMileTravelString } = sla;
   return (
     <Link to={`restraunts/${id}`}>
-      <div className="w-[250px] h-[325px] group ">
+      <div className="w-[250px] h-[325px] group max-md:w-full max-md:px-2  max-md:min-h-[350px] overflow-hidden shadow-md">
         <div className="w-full h-[50%] overflow-hidden object-center rounded-xl ">
           <img
             src={`${IMAGE_LINK + cloudinaryImageId}`}
             alt=""
-            className="group-hover:scale-[1.1] duration-200"
+            className="group-hover:scale-[1.1] duration-200 max-md:object-center"
           />
         </div>
-        <div className=" w-full ">
-          <h1 className="text-[1.15rem] font-[700]">{name}</h1>
-          <div className="text-[.9rem]">
+        <div className=" w-full h-fit ">
+          <h1 className="text-[1.15rem] font-[700] max-md:text-3xl">{name}</h1>
+          <div className="text-[.9rem] max-md:text-xl">
             <div className="w-full flex  justify-between">
               {" "}
               <h1>{avgRating} Stars</h1>

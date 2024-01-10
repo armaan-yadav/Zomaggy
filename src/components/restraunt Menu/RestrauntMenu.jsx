@@ -56,7 +56,7 @@ const RestrauntMenu = () => {
   }, []);
   return restrauntMenuItems && restrauntInfo ? (
     <>
-      <div className="px-[15rem] pt-5 bg-[#FFFFFF] mt-[66px]">
+      <div className="px-[15rem] pt-5 bg-[#FFFFFF] mt-[66px]  max-md:px-2">
         <RestrauntInfo
           restrauntInfoData={restrauntInfo}
           setRatingColorFunction={setRatingColorFunction}
