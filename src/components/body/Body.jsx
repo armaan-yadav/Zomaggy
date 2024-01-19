@@ -30,7 +30,9 @@ const Body = () => {
           },
         }
       );
+      console.log("first");
       const dataJSON = await data.json();
+      console.log(dataJSON);
 
       setAllRestraunts(
         dataJSON.data.success.cards[1].gridWidget.gridElements.infoWithStyle
@@ -50,12 +52,14 @@ const Body = () => {
         }
       );
       const dataJSON = await data.json();
+      console.log(dataJSON);
       if (dataJSON.data.cards[0].card.card.id == "swiggy_not_present") {
         setShowUnservicable(true);
       }
 
       if (
-        dataJSON.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+        dataJSON?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
       ) {
         setAllRestraunts(
           dataJSON.data.cards[1].card.card.gridElements.infoWithStyle

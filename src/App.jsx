@@ -28,7 +28,7 @@ const App = () => {
       }
     });
   }, []);
-  console.log(loggedIn, userName);
+  // console.log(loggedIn, userName);
   return (
     <>
       <Provider store={appStore}>
