@@ -1,8 +1,13 @@
-# React + Vite
+# Zomaggy - Order food online easyyy
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+https://zomaggy.netlify.app
 
-Currently, two official plugins are available:
+# Features
+-  Authentication using Google Firebase
+-  Real time fetching of restaurants based on live user's location
+-      -shows  location unservicable if no restaurants found near user's location
+-  Add to cart functionality
+  
+ 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
